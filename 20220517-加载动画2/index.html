@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --short: 8px;
+            --long: 40px;
+        }
+        body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+            background-color: #0c1c38;
+        }
+        #container {
+            display: flex;
+            width: 65px;
+            height: var(--long);
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        #container span {
+            display: inline-block;
+            position: relative;
+            width: 9px;
+            height: var(--short);
+            background-color: lightblue;
+            animation: beating 1.5s ease-in-out infinite;
+        }
+        #container span:nth-child(2) {
+            animation-delay: .2s;
+        }
+        #container span:nth-child(3) {
+            animation-delay: .4s;
+        }
+        #container span:nth-child(4) {
+            animation-delay: .6s;
+        }
+        #container span:nth-child(5) {
+            animation-delay: .8s;
+        }
+        @keyframes beating {
+            0% {
+                height: var(--short);
+                background-color: lightblue;
+            }
+            25% {
+                height: var(--long);
+                background-color: #409eff;
+            }
+            50% {
+                height: var(--short);
+                background-color: lightblue;
+            }
+            100% {
+                height: var(--short);
+                background-color: lightblue;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</body>
+</html>
