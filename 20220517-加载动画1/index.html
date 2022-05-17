@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            background-color: #0c1c38;
+            justify-content: center;
+            align-items: center;
+        }
+        #container {
+            display: flex;
+            height: 11em;
+            width: 14em;
+            justify-content: space-evenly;
+        }
+        #container span {
+            display: inline-block;
+            width: 1em;
+            border-radius: .5em;
+            position: relative;
+            background-color: var(--c);
+            height: var(--h);
+            top: var(--top);
+            animation: beating 3s infinite;
+        }
+        #container span:nth-child(1),
+        #container span:nth-child(9) {
+            --c: orangered;
+            --h: 3.2em;
+            --top: 2em;
+        }
+        #container span:nth-child(2),
+        #container span:nth-child(8) {
+            --c: gold;
+            --h: 5.6em;
+            --top: 1em;
+        }
+        #container span:nth-child(3),
+        #container span:nth-child(7) {
+            --c: limegreen;
+            --h: 8em;
+            --top: 0em;
+        }
+        #container span:nth-child(4),
+        #container span:nth-child(6) {
+            --c: dodgerblue;
+            --h: 8.4em;
+            --top: 1.2em;
+        }
+        #container span:nth-child(5) {
+            --c: mediumpurple;
+            --h: 9em;
+            --top: 2em;
+        }
+        @keyframes beating {
+            0%, 30% {
+                background-color: var(--c);
+                height: var(--h);
+                top: var(--top);
+                width: 1em;
+                filter: blur(0);
+            }
+            60%, 70% {
+                background-color: lightblue;
+                height: 50%;
+                top: 25%;
+                width: .1em;
+                filter: blur(1px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</body>
+</html>
