@@ -1,0 +1,77 @@
+:root {
+    --l: 140px;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    background: #7F7FD5; 
+    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+}
+
+.box {
+    position: relative;
+    width: var(--l);
+    height: var(--l);
+    transform-style: preserve-3d;
+    transform: rotateY(5deg) rotateX(-5deg);
+}
+
+.direction {
+    position: absolute;
+    width: var(--l);
+    height: var(--l);
+    border: 1px solid wheat;
+    background-color: rgb(220, 198, 113);
+}
+
+.up {
+    /* 上面要翻盖，修改坐标原点（默认是中心点） */
+    transform-origin: top;
+    transform: translateZ(calc(var(--l)/-2)) rotateX(90deg);
+    transition: 1s;
+}
+.down {
+    transform: translateY(calc(var(--l)/2)) rotateX(90deg);
+}
+.left {
+    transform: translateX(calc(var(--l)/-2)) rotateY(90deg);
+}
+.right {
+    transform: translateX(calc(var(--l)/2)) rotateY(90deg);
+}
+.front {
+    transform: translateZ(calc(var(--l)/2));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.back {
+    transform: translateZ(calc(var(--l)/-2));
+}
+
+.front video {
+    width: calc(var(--l) - 40px);
+    /* display: none; */
+}
+.thing {
+    width: calc(var(--l)/2);
+    height: calc(var(--l)/2);
+    background-image: url('./switch.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 auto;
+    transition: 1.5s;
+}
+
+.box:hover .up {
+    transform: translateZ(calc(var(--l)/-2)) rotateX(180deg);
+}
+.box:hover .thing {
+    transform: translateY(calc(var(--l)/-2));
+}

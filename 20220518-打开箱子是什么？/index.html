@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>箱子</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <!-- 多行选择：按住鼠标滚轮往下拉 -->
+            <div class="direction up"></div>
+            <div class="direction down"></div>
+            <div class="direction left"></div>
+            <div class="direction right"></div>
+            <div class="direction front">
+                <!-- 不支持非静音自动播放 -->
+                <video autoplay loop muted>
+                    <source src="./tie.mp4" type="video/mp4">你的浏览器不支持video标签。
+                </video>
+            </div>
+            <div class="direction back"></div>
+            <div class="thing"></div>
+        </div>
+    </div>
+</body>
+</html>
