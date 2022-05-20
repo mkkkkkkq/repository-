@@ -1,0 +1,69 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.div-carousel {
+    /* 图片比例固定 */
+    width: 450px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+.div-carousel-imglist {
+    position: relative;
+    z-index: 1;
+}
+.div-carousel-item {
+    position: absolute;
+    transition: all 0.5s;
+    transform: none;
+}
+.div-carousel-item:nth-child(2) {
+    transform: translateX(450px);
+}
+.div-carousel-item img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.div-carousel-trigger {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+    /* background-color: #000; */
+}
+.div-carousel-trigger > div {
+    box-sizing: border-box;
+    width: 10px;
+    height: 10px;
+    margin-right: 15px;
+    border-radius: 50%;
+    background-color: rgba(126, 126, 126, .5);
+    cursor: pointer;
+}
+.div-carousel-trigger > div.active {
+    width: 15px;
+    height: 15px;
+    background-color: transparent;
+    background-image: url('./active-img.png');
+    background-size: cover;
+}
+.div-carousel-trigger > div:hover {
+    border: 3px solid rgb(0, 161, 214);
+    background-color: white;
+    transform: scale(1.3);
+}
+.div-carousel-trigger > div.active:hover {
+    border: none;
+    transform: none;
+    background-color: transparent;
+}
