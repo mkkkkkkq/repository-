@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffefba;
+            background: linear-gradient(#fff, #ffefba);
+        }
+        .container {
+            position: relative;
+            width: 190px;
+            height: 200px;
+        }
+        .ear {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: absolute;
+            top: 5px;  
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .ear div {
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            width: 50px;
+            height: 45px;
+            border: 3px solid #000;
+            border-radius: 50%;
+            background-color: #c6ac93;
+        }
+        .ear div::after {
+            content: '';
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: pink;
+        }
+        .face {
+            box-sizing: border-box;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 160px;
+            padding: 15% 20%;
+            border: 3px solid #000;
+            border-radius: 20% / 22%;
+            background-color: #c6ac93;
+        }
+        .eye {
+            width: 100%;
+            height: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .eye div {
+            width: 15px;
+            height: 13px;
+            background-color: #000;
+            border-radius: 50%;
+            animation: wink 3s linear infinite both;
+        }
+        .nose {
+            box-sizing: border-box;
+            width: 70px;
+            height: 50px;
+            margin: 0 auto;
+            margin-top: -10px;
+            border: 3px solid #000;
+            border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
+            background-color: #fce3c4;
+        }
+        .nose > div:nth-child(1) {
+            width: 12px;
+            height: 9px;
+            margin: 8px auto 0 auto;
+            border-radius: 50%;
+            background-color: #000;
+        }
+        .nose > div:nth-child(2) {
+            width: 10px;
+            height: 12px;
+            margin: 0 auto 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .nose > div > div {
+            width: 3px;
+            height: 12px;
+            border-radius: 8px;
+            background-color: #000;
+            margin-top: -3px;
+        }
+        .nose > div > div:nth-of-type(1) {
+            transform: rotateZ(30deg);
+        }
+        .nose > div > div:nth-of-type(2) {
+            transform: rotateZ(-30deg);
+        }
+
+        @keyframes wink {
+            0%, 40%, 100% {
+                height: 13px;
+                border-radius: 50%;
+            }
+            20% {
+                height: 4px;
+                border-radius: 0%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="ear">
+            <div></div>
+            <div></div>
+        </div>
+        <div class="face">
+            <div class="eye">
+                <div></div>
+                <div></div>
+            </div>
+            <div class="nose">
+                <div></div>
+                <div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
