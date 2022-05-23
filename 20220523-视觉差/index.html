@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0; 
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;  
+            justify-content: center;
+            align-items: center;
+            background-image: url(./1.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+        .start {
+            position: relative;
+            color: #000;
+            font: 900 50px '';
+            letter-spacing: 8px;
+            text-shadow: 
+                1px 1px 0 #fff, 
+                2px 2px 0 #fff,
+                3px 3px 0 #fff,
+                4px 4px 0 #333;
+            opacity: 0;
+            transition: 1.5s;
+            z-index: 2;
+            cursor: pointer;
+        }
+        .start::before {
+            content: '';
+            position: absolute;
+            width: 110%;
+            height: 110%;
+            left: -5%;
+            background-color: #00000015;
+            border-top: 2px solid #000000;
+            border-bottom: 2px solid #000000;
+            transform: skewX(-20deg);
+            z-index: 1;
+        }
+
+        .container > div {
+            width: 100%;
+            height: 100%;
+            opacity: .7;
+            position: absolute;
+            overflow: hidden;
+        }
+        .container > div::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-image: url(./1.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .container > div:nth-child(1) {
+            right: 0;
+            transform: rotateZ(-100deg);
+            transition: 2s;
+        }
+        .container > div:nth-child(1)::after {
+            transform: rotateZ(100deg);
+        }
+        .container > div:nth-child(2) {
+            right: 0;
+            transform: rotateZ(100deg);
+            transition: 1s;
+        }
+        .container > div:nth-child(2)::after {
+            transform: rotateZ(-100deg);
+        }
+        .container > div:nth-child(3) {
+            left: 0;
+            transform: rotateZ(-100deg);
+            transition: 2s;
+        }
+        .container > div:nth-child(3)::after {
+            transform: rotateZ(100deg);
+        }
+        .container > div:nth-child(4) {
+            left: 0;
+            transform: rotateZ(100deg);
+            transition: 1s;
+        }
+        .container > div:nth-child(4)::after {
+            transform: rotateZ(-100deg);
+        }
+
+        .container:hover > .start {
+            opacity: 1;
+        }
+        .container:hover > div:nth-child(1), .container:hover > div:nth-child(2) {
+            right: -50%;
+        }
+        .container:hover > div:nth-child(3), .container:hover > div:nth-child(4) {
+            left: -50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <p class="start">CLICK TO START</p>
+    </div>
+
+    <script>
+        var container = document.querySelector('.container')
+        var start = document.querySelector('.start')
+
+        start.addEventListener('click', function(e) {
+            container.style.transition = "1s"
+            container.style.transform = "scale(0.1) rotateZ(720deg)"
+            setTimeout(function() {
+                container.style.display = "none"
+            }, 1000)
+        })
+    </script>
+</body>
+</html>
