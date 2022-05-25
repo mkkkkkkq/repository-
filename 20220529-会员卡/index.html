@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 阿里巴巴矢量图标库，symbol -->
+    <script src="//at.alicdn.com/t/font_2232321_kp443slmbf.js"></script>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #E0EAFC;
+            background: linear-gradient(to right, #CFDEF3, #E0EAFC);
+        }
+        .container {
+            position: relative;
+            height: 160px;
+            width: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+        }
+        .card {
+            position: absolute;
+            height: 160px;
+            width: 240px;
+            background-color: #000;
+            background: linear-gradient(to top, #000000, #434343);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .card-top {
+            color: #fff;
+            font: 900 11px "Comic Sans MS", 'cursive', sans-serif;
+            position: absolute;
+            top: 2px;
+            left: 10px;
+            right: 10px;
+            display: flex;
+            justify-content: space-between;
+            transition: 1s;
+            opacity: 0;
+        }
+        .card-name {
+            color: #fff;
+            font: 900 40px Georgia, serif;
+        }
+        .card-bottom {
+            position: absolute;
+            bottom: 2px;
+            left: 10px;
+            color: #fff;
+            font: 900 11px "Comic Sans MS", 'cursive', sans-serif;
+            transition: 1s;
+            opacity: 0;
+        }
+
+        .disappear {
+            display: none;
+        }
+
+        .envelope-back {
+            position: absolute;
+            height: 135px;
+            width: 250px;
+            background-color: #77777799;
+            border-radius: 8px;
+        }
+        .envelope-cover {
+            position: absolute;
+            transition: 1.5s;
+            transform-origin: center bottom;
+            border-top: 25px solid transparent;
+            border-bottom: 75px solid rgba(255, 255, 255, .95);
+            border-left: 125px solid rgba(255, 255, 255, .95);
+            border-right: 125px solid rgba(255, 255, 255, .95);
+        }
+        .open {
+            position: absolute;
+            bottom: 30%;
+            width: 80px;
+            height: 20px;
+            border-radius: 10px;
+            background-color: #000;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            user-select: none;
+            cursor: pointer;
+            transition: 1s;
+            opacity: 1;
+        }
+        .icon {
+            width: 12px;
+            height: 12px;
+        }
+        .open span {
+            color: #fff;
+            font: 900 12px "Comic Sans MS", 'cursive', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="envelope-back"></div>
+        <div class="card">
+            <div class="card-top disappear">
+                <span>到期：2022-08-21</span>
+                <span>你的昵称</span>
+            </div>
+            <div class="card-name"><span>BiliBili</span></div>
+            <div class="card-bottom disappear"><span>BiliBili 2022 0525 0000 1234</span></div>
+        </div>
+        <div class="envelope-cover"></div>
+        <div class="open">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#iconhuiyuanjifen"></use>
+            </svg>
+            <span>开通会员</span>
+        </div>
+    </div>
+
+    <script>
+        var openButton = document.querySelector('.open')
+        var envelopeBack = document.querySelector('.envelope-back')
+        var envelopeCover = document.querySelector('.envelope-cover')
+        var cardTop = document.querySelector('.card-top')
+        var cardBottom = document.querySelector('.card-bottom')
+
+        openButton.addEventListener('click', function() {
+            envelopeCover.style.transform = 'rotateX(180deg)'
+            openButton.style.opacity = '0'
+            cardTop.classList.remove('disappear')
+            cardBottom.classList.remove('disappear')
+
+            setTimeout(function() {
+                openButton.classList.add('disappear')
+                cardTop.style.opacity = '1'
+                cardBottom.style.opacity = '1'
+            }, 300)
+            setTimeout(function() {
+                envelopeCover.classList.add('disappear')
+                envelopeBack.classList.add('disappear')
+            }, 1000)
+        })
+    </script>
+</body>
+</html>
