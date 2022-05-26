@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            /* rem的基准大小 */
+            font-size: 100px;
+        }
+        body {
+            margin: 0;
+            height: 100vh;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .div-carousel {
+            width: 6rem;    /*600px*/
+            height: auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .div-carousel-items {
+            width: 700%;
+            position: relative;
+            left: 0;
+            display: flex;
+            transition: .5s ease-in-out;
+            z-index: 1;
+        }
+        .div-carousel-img {
+            font-size: 0;
+        }
+        .div-carousel-img img {
+            width: 100%;
+        }
+        .div-carousel-focus {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            font-size: 0;
+            text-align: center;
+            z-index: 2;
+        }
+        .div-carousel-focus span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 10px 5px;
+            box-sizing: border-box;
+            background-color: #c0c0c0bb;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .div-carousel-focus span.active {
+            background-color: #fff;
+            transform: scale(1.2);
+        }
+        .div-carousel-focus span:hover {
+            transform: scale(1.3);
+            border: 3px solid #c0c0c0bb;
+            background-color: #fff;
+        }
+        .div-carousel-focus span.active:hover {
+            background-color: #fff;
+            transform: scale(1.2);
+            border: none;
+        }
+
+        .div-carousel-left, .div-carousel-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 45px;
+            font: 900 .5rem '';
+            background-color: #ffffff20;
+            z-index: 3;
+            cursor: pointer;
+            user-select: none;
+        }
+        .div-carousel-left {
+            left: 0;
+        }
+        .div-carousel-right {
+            right: 0;
+        }
+        .div-carousel-left:hover, .div-carousel-right:hover {
+            background-color: #ffffff33;
+        }
+    </style>
+</head>
+<body>
+    <div class="div-carousel">
+        <div class="div-carousel-left">&lt;</div>
+        <div class="div-carousel-items">
+            <div class="div-carousel-img"><a href="#"><img src="./1.jpeg" alt=""></a></div>
+            <div class="div-carousel-img"><a href="#"><img src="./2.jpeg" alt=""></a></div>
+            <div class="div-carousel-img"><a href="#"><img src="./3.jpeg" alt=""></a></div>
+            <div class="div-carousel-img"><a href="#"><img src="./4.jpeg" alt=""></a></div>
+            <div class="div-carousel-img"><a href="#"><img src="./5.jpeg" alt=""></a></div>
+            <div class="div-carousel-img"><a href="#"><img src="./6.jpeg" alt=""></a></div>
+            <div class="div-carousel-img"><a href="#"><img src="./1.jpeg" alt=""></a></div>
+        </div>
+        <div class="div-carousel-focus">
+            <span class="active"></span>
+            <span class=""></span>
+            <span class=""></span>
+            <span class=""></span>
+            <span class=""></span>
+            <span class=""></span>
+        </div>
+        <div class="div-carousel-right">&gt;</div>
+    </div>
+
+    <script>
+        let imgSum = 6      //图片数量
+        let index = 0       //当前显示图片索引
+
+        let focuSpans = document.querySelectorAll('.div-carousel-focus span')
+        let leftButton = document.querySelector('.div-carousel-left')
+        let rightButton = document.querySelector('.div-carousel-right')
+        let items = document.querySelector('.div-carousel-items')
+        let process, process1, process2
+
+        function showImg(nowIndex) {
+            for(let i = 0; i < focuSpans.length; i++) {
+                focuSpans[i].classList.remove('active')
+            }
+            focuSpans[(nowIndex >= 6)? 0: nowIndex].classList.add('active')
+            // 模板字符串
+            items.style.left = `${-100 * nowIndex}%`
+        }
+
+        function initListener() {
+            // 圆按钮
+            focuSpans.forEach(function(el, i){
+                el.addEventListener('click', function() {
+                    clearTimeout(process1)
+                    clearTimeout(process2)
+                    clearInterval(process)
+                    index = i
+                    showImg(index)
+                    carousel()
+                })
+            })
+            // 向左按钮
+            leftButton.addEventListener('click', function() {
+                clearTimeout(process1)
+                clearTimeout(process2)
+                clearInterval(process)
+                index--
+                if (-1 == index) {
+                    index = imgSum - 1
+                }
+                showImg(index)
+                carousel()
+            })
+            // 向右按钮
+            rightButton.addEventListener("click", function(e) {
+                clearTimeout(process1)
+                clearTimeout(process2)
+                clearInterval(process)
+                index++
+                showImg(index)
+                if( imgSum == index) {
+                    // 取消过渡，移动到第一张
+                    setTimeout(function(){
+                        index = 0
+                        items.style.transition = 'none'
+                        items.style.left = '0'
+                    }, 501)
+                    // 恢复过渡
+                    setTimeout(function() {
+                        items.style.transition = '.5s ease-in-out'
+                    }, 511)
+                }
+                carousel()
+            })
+        }
+
+        // 自动轮播
+        function carousel() {
+            process = setInterval(function(){
+                index++
+                showImg(index)
+                // 显示的是第一张时（即尾部填充的最后一张）
+                if( imgSum == index) {
+                    // 取消过渡，移动到第一张
+                    process1 = setTimeout(function(){
+                        index = 0
+                        items.style.transition = 'none'
+                        items.style.left = '0'
+                    }, 501)
+                    // 恢复过渡
+                    process2 = setTimeout(function() {
+                        items.style.transition = '.5s ease-in-out'
+                    }, 511)
+                }
+            }, 3000)
+        }
+        initListener()
+        carousel()
+    </script>
+</body>
+</html>
