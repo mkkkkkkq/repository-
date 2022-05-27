@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #bfdfff;
+        }
+        div.container {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: start;
+            overflow: hidden;
+        }
+
+        div.card-item {
+            width: 250px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background-color: #ffdee9;
+            transition: .5s;
+            box-shadow: 0 0 5px rgba(255, 255, 255, .8);
+        }
+        div.card-item::before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 10px;
+            height: 100%;
+            left: calc(50% - 5px);
+            background-color: rgba(255, 255, 255, .7);
+            z-index: 2;
+        }
+        div.card-item:hover {
+            height: 260px;
+        }
+
+        div.card-item > span.title {
+            margin: 30px 25px;
+            color: #fff;
+            font: 900 20px '';
+        }
+
+        div.card-item > img.image {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            align-self: center;
+            border-radius: 50%;
+            border: 10px solid rgba(255, 255, 255, .7);
+            top: calc(50% - 65px);
+            transition: .5s;
+            z-index: 3;
+            user-select: none;
+        }
+        div.card-item:hover > img.image {
+            transform: rotateZ(180deg);
+        }
+
+        div.card-item > p.description {
+            position: absolute;
+            height: 130px;
+            top: 100%;
+            padding: 10px;
+            margin: 0;
+            font-size: 13px;
+            text-indent: 2em;
+            color: pink;
+            background-color: #fff;
+            overflow-y: scroll; 
+        }
+        /* 滚动条样式 */
+        div.card-item > p.description::-webkit-scrollbar {
+            width: 3px;
+            border-radius: 10px;
+            background-color: #ffffff00;
+        }
+        /* 滑块样式 */
+        div.card-item > p.description::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: #b0b0b0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card-item">
+            <span class="title">菠萝油</span>
+            <img src="1.jpg" alt="菠萝油" class="image">
+            <p class="description">
+                菠萝油是由香港特色食品菠萝包发展而来的食品，是将菠萝包横向切开夹著一块厚切的牛油（或奶油）所组成。香港很多茶餐厅都会供应这种食品，搭配咖啡、奶茶(丝袜奶茶)或鸳鸯作为下午茶餐或早餐。
+            </p>
+        </div>
+        <div class="card-item">
+            <span class="title">干蒸</span>
+            <img src="2.jpg" alt="干蒸" class="image">
+            <p class="description">
+                干蒸在上个世纪已经流行于香港、澳门等地，是广东人饮茶吃早点的重要角色。干蒸以肥猪肉粒、瘦猪肉粒、鲜虾为主要馅料，加之作料调味蒸熟，皮薄肉爽，别具风味，包含粤菜的特色，适合广东人的口味。
+            </p>
+        </div>
+        <div class="card-item">
+            <span class="title">云吞面</span>
+            <img src="3.jpg" alt="云吞面" class="image">
+            <p class="description">
+                云吞面（Wonton Noodle）又称馄饨面、细蓉、大蓉，是广东省的汉族特色小吃，属于粤菜系。
+                一般以云吞拌面，分为汤面与捞面。云吞面是一种在中国十分普遍的食品。以煮熟的馄饨和蛋面，加入热汤即成。
+                云吞面也是香港饮食文化中不可或缺的一部份。 云吞就是馄饨，最早云吞以全猪肉制，所以称做“净肉云吞”。
+                古代云吞很讲究，要肥三瘦七，弄成肉糜，正宗的且先切后剁。现今我们平常吃的云吞面多数是以鲜虾云吞制成，云吞材料有云吞皮、鲜虾、猪肉。
+            </p>
+        </div>
+    </div>
+</body>
+</html>
