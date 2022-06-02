@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --sh: 83px;
+            --bw: 640px;
+            --bh: 360px;
+        }
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #8ec5fc;
+            background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+        }
+        .div-small-img-list {
+            width: calc(var(--bw) + 50px);
+            height: var(--sh);
+            display: flex;
+            justify-content: space-evenly;
+            align-items: flex-end;
+        }
+        .div-small-img {
+            cursor: pointer;
+        }
+        .defaultSmallImg {
+            width: calc(var(--bw)/5);
+            opacity: 1;
+            transition: 1s;
+        }
+        .moveSmallImg {
+            opacity: 0;
+            transform: translateY(-130px);
+        }
+        .div-big-img {
+            width: var(--bw);
+            height: var(--bh);
+            margin: 0 auto;
+            background-image: url(./1.jpeg);
+            background-size: cover;
+            transition: 1s;
+        }
+    </style>
+</head>
+<body>
+    <div class="div-carousel">
+        <div class="div-big-img"></div>
+        <div class="div-small-img-list">
+            <div class="div-small-img"><img src="1.jpeg" alt="" class="defaultSmallImg moveSmallImg"></div>
+            <div class="div-small-img"><img src="2.jpeg" alt="" class="defaultSmallImg"></div>
+            <div class="div-small-img"><img src="3.jpeg" alt="" class="defaultSmallImg"></div>
+            <div class="div-small-img"><img src="4.jpeg" alt="" class="defaultSmallImg"></div>
+            <div class="div-small-img"><img src="5.jpeg" alt="" class="defaultSmallImg"></div>
+        </div>
+    </div>
+
+    <script>
+        let imgIndex = 0                //显示的图片索引
+        let process 
+        let img = document.querySelectorAll('.div-small-img img')
+        let bigImage = document.querySelector('.div-big-img')
+
+        function showImg(index) {
+            // 小图恢复默认状态
+            for (let i = 0; i < img.length; i++) {
+                img[i].className = 'defaultSmallImg'
+            }
+            // 当前位移的小图片
+            img[index].className = 'defaultSmallImg moveSmallImg'
+            // 大图片显示
+            bigImage.style.backgroundImage = `url('${index + 1}.jpeg')`
+        }
+        // 开始轮播
+        function startToggle() {
+            process = setInterval(function() {
+                imgIndex = imgIndex + 1
+                if( imgIndex == 5 ) {
+                    imgIndex = 0
+                }
+                showImg(imgIndex)
+            }, 2000)
+        }
+
+        // 定义小图的点击响应事件
+        for (let i = 0; i < img.length; i++) {
+            img[i].onclick = function () {
+                clearInterval(process)
+                imgIndex = i
+                showImg(i) 
+                startToggle()
+            }
+        }
+
+        // 当鼠标放置在大图上面时，停止轮播
+        bigImage.onmouseover = function() {
+            clearInterval(process)
+        }
+        bigImage.onmouseout =  function() {
+            startToggle()
+        }
+
+        startToggle()
+    </script>
+</body>
+</html>
