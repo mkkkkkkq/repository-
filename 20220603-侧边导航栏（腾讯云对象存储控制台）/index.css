@@ -1,0 +1,205 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.sidebar {
+    width: 56px;
+    height: 95%;
+    transition: 1s;
+    border-right: 1px solid #e7eaef;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* 标题 */
+.sidebar .menu-head {
+    width: 200px;
+    height: 56px;
+    line-height: 56px;
+    border-bottom: 1px solid #e7eaef;
+}
+.sidebar .menu-head i {
+    padding: 0 12px;
+    font-size: 32px;
+    color: #7c878e;
+}
+.sidebar .menu-head span {
+    display: none;
+    width: 100%;
+    padding: 0 20px;
+    color: #000;
+    font: 900 14px '';
+}
+
+/* 尾部按钮 */
+.sidebar .menu-foot {
+    width: 200px;
+    height: 56px;
+    line-height: 56px;
+    border-top: 1px solid #e7eaef;
+}
+.sidebar .menu-foot-button {
+    cursor: pointer;
+    width: 56px;
+    height: 56px;
+    padding: 0 19px;
+}
+.sidebar .menu-foot-button i {
+    font-size: 16px;
+    color: #7c878e;
+}
+.sidebar .menu-foot-button i:nth-child(1) {
+    display: inline-block;
+}
+.sidebar .menu-foot-button i:nth-child(2) {
+    display: none;
+}
+.sidebar .menu-foot-button:hover {
+    background-color: #f3f4f7;
+}
+
+
+/* 菜单列表 */
+.sidebar .menu-body {
+    width: 200px;
+    height: 100%;
+    overflow: hidden;   
+}
+ul.menu-list {
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+li.menu-list-label {
+    position: relative;
+    color: #000;
+    font-size: 12px;
+    padding: 18px 0 4px 20px;
+}
+li.menu-list-label span {
+    display: none;
+}
+li.menu-list-label::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    bottom: 10px;
+    height: 1px;
+    display: block;
+    background-color: rgba(124, 135, 142, .5);
+}
+
+li.menu-list-item > a {
+    text-decoration: none;
+    padding: 10px 0 10px 20px;
+    display: flex;
+    align-items: center;
+}
+li.menu-list-item i {
+    font-size: 16px;
+    color: #7c878e;
+    margin: 0 8px 0 0;
+}
+li.menu-list-item > a > span {
+    font-size: 13px;
+    display: none;
+    color: #000;
+}
+li.menu-list-item:hover {
+    background-color: #e7eaef;
+}
+
+/* 展开后的样式 */
+.sidebar.is-expanded {
+    width: 201px;
+}
+.sidebar.is-expanded .menu-head i {
+    display: none;
+}
+.sidebar.is-expanded .menu-head span {
+    display: inline-block;
+}
+.sidebar.is-expanded li.menu-list-item > a > span {
+    display: block;
+}
+.sidebar.is-expanded li.menu-list-label span {
+    display: block;
+}
+.sidebar.is-expanded li.menu-list-label::after {
+    display: none;
+}
+.sidebar.is-expanded .menu-foot-button i:nth-child(1) {
+    display: none;
+}
+.sidebar.is-expanded .menu-foot-button i:nth-child(2) {
+    display: inline-block;
+}
+
+/* 列表项选中时样式 */
+li.is-selected > a {
+    background-color: #006eff;
+}
+li.is-selected > a > i, li.is-selected > a > span {
+    color: #fff;
+}
+
+/* 夜间主题 */
+.sidebar.theme-dark {
+    background-color: #1e222d;
+}
+.sidebar.theme-dark .menu-head {
+    border: none;
+}
+.sidebar.theme-dark .menu-head span {
+    color: #fff;
+}
+.sidebar.theme-dark .menu-foot {
+    border: none;
+    background-color: #262f3e;
+}
+.sidebar.theme-dark .menu-foot-button:hover {
+    background-color: #344258;
+}
+.sidebar.theme-dark .menu-foot-button:hover i {
+    color: #fff;
+}
+.sidebar.theme-dark li.menu-list-item:hover {
+    background-color: #262f3e;
+}
+.sidebar.theme-dark li.menu-list-item > a > span {
+    color: #c1c6c8;
+}
+.sidebar.theme-dark li.menu-list-label span {
+    color: #7c878e;
+}
+.sidebar.theme-dark li.is-selected > a > i, .sidebar.theme-dark li.is-selected > a > span {
+    color: #fff;
+}
+
+/* 滚动条 */
+.sidebar ::-webkit-scrollbar {
+    width: 7px;
+}
+.sidebar ::-webkit-scrollbar-thumb {
+    width: 7px;
+    border-radius: 10px;
+    background-color: #b0b0b055;
+}
+.sidebar.theme-dark ::-webkit-scrollbar-thumb {
+    background-color: #313f5a;
+}
