@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: #8ec5fc;
+            background-image: linear-gradient(62deg, #8ec5fc, #e0c3fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 420px;
+            height: 230px;
+            background-color: #ffa07ac0;
+            transform-style: preserve-3d;
+            transition: .5s;
+            transform: rotateZ(-5deg);
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 7px solid black;
+            background-color: transparent;
+            transition: .5s;
+            transform: rotateZ(8deg) rotateY(-30deg);
+        }
+        .word1 {
+            font: bold 60px '';
+            padding: 0 15px;
+            color: lightsalmon;
+            background-color: #000;
+        }
+        .word2 {
+            font: bold 60px '';
+            color: black;
+        }
+        .container:hover::before {
+            transform: none;
+        }
+        .container:hover {
+            transform: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="word1">默默</span><span class="word2">听不到</span>
+    </div>
+</body>
+</html>
