@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0c1c38;
+            background: linear-gradient(#0c1c38, #243b55);
+        }
+
+        .login-container {
+            width: 400px;
+            padding: 40px;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+        }
+
+        .login-container h2 {
+            margin: 0 0 30px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .login-form > div {
+            position: relative;
+        }
+
+        .login-form > div > input {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #fff;    
+            margin-bottom: 30px;
+            border: none;
+            border-bottom: 1px solid #fff;
+            outline: none;
+            background-color: transparent;
+        }
+        .login-form > div > label {
+            position: absolute;
+            color: #fff;
+            top: 0;
+            left: 0;
+            padding: 10px 0;
+            font-size: 16px;
+            transition: all .5s;
+            /* none表示鼠标事件“穿透”该元素 */
+            pointer-events: none;
+        }
+        .login-form > div > input:focus ~ label {
+            top: -20px;
+            color: #03e9f4;
+            font-size: 12px;
+        }
+        .login-form > a {
+            position: relative;
+            display: inline-block;
+            padding: 6px 20px;
+            margin-top: 40px;
+            color: #03e9f4;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.5s;
+            letter-spacing: 4px;
+            overflow: hidden;
+        }
+        .login-form > a span {
+            position: absolute;
+            display: block;
+        }
+        .login-form > a span:nth-child(1) {
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #03e9f4);
+            animation: running1 1s linear infinite;
+        }
+        .login-form > a span:nth-child(2) {
+            right: 0;
+            top: -100%;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(180deg, transparent, #03e9f4);
+            animation: running2 1s linear .25s infinite;
+        }
+        .login-form > a span:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(270deg, transparent, #03e9f4);
+            animation: running3 1s linear .5s infinite;
+        }
+        .login-form > a span:nth-child(4) {
+            left: 0;
+            bottom: -100%;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(360deg, transparent, #03e9f4);
+            animation: running4 1s linear .75s infinite;
+        }
+        @keyframes running1 {
+            0% {
+                left: -100%;
+            }
+            50%, 100% {
+                left: 100%;
+            }
+        }
+        @keyframes running2 {
+            0% {
+                top: -100%;
+            }
+            50%, 100% {
+                top: 100%;
+            }
+        }
+        @keyframes running3 {
+            0% {
+                right: -100%;
+            }
+            50%, 100% {
+                right: 100%;
+            }
+        }
+        @keyframes running4 {
+            0% {
+                bottom: -100%;
+            }
+            50%, 100% {
+                bottom: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>登录</h2>
+        <form action="" class="login-form">
+            <div><input type="text" required><label for="">用户名</label></div>
+            <div><input type="password" required><label for="">密码</label></div>
+            <a href="#"><span></span><span></span><span></span><span></span>提交</a>
+        </form>
+    </div>
+</body>
+</html>
