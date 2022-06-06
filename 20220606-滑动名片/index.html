@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(192, 199, 228);
+            background-image: linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%);
+        }
+        .container {
+            width: 600px;
+            height: 390px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            background-color: #fff;
+        }
+        .div-card {
+            width: 570px;
+            height: 360px;
+            position: relative;
+            border-radius: 10px;
+            background-color: #86a8e7;
+            overflow: hidden;
+        }
+        .div-name {
+            width: 200px;
+            color: #fff;
+            font: 900 40px '';
+            position: absolute;
+            top: 40px;
+            left: 30px;
+            transition: 1s .1s;
+        }
+        .div-wechat {
+            width: 200px;
+            color: lightsalmon;
+            font: 900 25px '';
+            position: absolute;
+            top: 105px;
+            left: 30px;
+            transition: 1s .1s;
+            opacity: 0;
+        }
+        .div-description {
+            width: 200px;
+            color: #fff;
+            font-size: 15px;
+            position: absolute;
+            top: 115px;
+            left: 35px;
+            transition: 1s .1s;
+        }
+        .div-bar-type {
+            width: calc(200px + var(--w)*70px);
+            height: 50px;
+            background-color: cornsilk;
+            position: absolute;
+            transform: rotateZ(145deg) translate(calc(-300px + var(--i)*15px), calc(var(--i)*-50px - 90px));
+            border-radius: 25px;
+            transition: 1s calc(var(--i)*0.1s);
+        }
+        .div-bar-type:nth-child(8) {
+            background-color: lightsalmon;
+        }
+        .div-bar-type:nth-child(7) {
+            background-color: lightseagreen;
+        }
+        .div-bar-type:nth-child(6) {
+            background-color: lightpink;
+        }
+        .div-bar-type:nth-child(5) {
+            background-color: lightcyan;
+        }
+
+        .div-card:hover .div-bar-type {
+            transform: rotateZ(145deg) translate(calc(-600px + var(--i)*15px), calc(var(--i)*-50px - 90px));
+        }
+        .div-card:hover .div-name {
+            left: 330px;
+        }
+        .div-card:hover .div-wechat {
+            left: 330px;
+            opacity: 1;
+        }
+        .div-card:hover .div-description {
+            left: 335px;
+            top: 150px;
+        }
+
+        .f {
+            width: 230px;
+            height: 230px;
+            background-image: url('./1.png');
+            background-size: cover;
+            font: 900 15px '';
+            text-align: center;
+            margin: 40px;
+            border: 1px solid black;
+            border-radius: 10px;
+            opacity: 0;
+            transition: .7s .3s;
+        }
+        .div-card:hover .f {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="div-card">
+            <div class="div-name">默默听不到</div>
+            <div class="div-wechat">WeChat:123456</div>
+            <div class="div-description">我也不知道我在干什么，写点啥好呢？写啥都不行，hhhhhh，我也不知道写了些什么。</div>
+            <div class="div-bar-type" style="--i: 1; --w: 1;"></div>
+            <div class="div-bar-type" style="--i: 2; --w: 2;"></div>
+            <div class="div-bar-type" style="--i: 3; --w: 3;"></div>
+            <div class="div-bar-type" style="--i: 4; --w: 4;"></div>
+            <div class="div-bar-type" style="--i: 5; --w: 5;"></div>
+
+            <div class="f">听说我是二维码</div>
+        </div>
+    </div>
+</body>
+</html>
