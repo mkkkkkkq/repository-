@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+        }
+
+        .div-carousel {
+            position: relative;
+            width: 640px;
+            height: 360px;
+        }
+
+        .div-carousel-imglist {
+            width: 100%;
+            position: relative;
+        }
+        .div-carousel-item {
+            width: 100%;
+            position: absolute;
+            transition: .8s;
+        }
+        .div-carousel-item img {
+            width: 100%;
+        }
+
+        .div-carousel-focus {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            text-align: center;
+        }
+        .div-carousel-focus span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            box-sizing: border-box;
+            margin: 10px;
+            border-radius: 50%;
+            background-color: #cccccc99;
+        }
+        .div-carousel-focus span:hover {
+            transform: scale(1.4);
+            border: 3px solid #ccc;
+            background-color: #fff;
+        }
+        .div-carousel-focus span.active {
+            transform: scale(1.5);
+            background: url(./active-img.png);
+            background-size: cover;
+        }
+        .div-carousel-focus span.active:hover {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="div-carousel">
+        <div class="div-carousel-imglist">
+            <!-- 内联样式才可以有过渡效果 -->
+            <div class="div-carousel-item" style="opacity: 0"><a href=""><img src="1.jpeg" alt=""></a></div>
+            <div class="div-carousel-item" style="opacity: 0"><a href=""><img src="2.jpeg" alt=""></a></div>
+            <div class="div-carousel-item" style="opacity: 0"><a href=""><img src="3.jpeg" alt=""></a></div>
+            <div class="div-carousel-item" style="opacity: 0"><a href=""><img src="4.jpeg" alt=""></a></div>
+            <div class="div-carousel-item" style="opacity: 0"><a href=""><img src="5.jpeg" alt=""></a></div>
+            <div class="div-carousel-item" style="opacity: 0"><a href=""><img src="6.jpeg" alt=""></a></div>
+        </div>
+        <div class="div-carousel-focus">
+            <span class="active"></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span>
+        </div>
+    </div>
+
+    <script>
+        var imgSum = 6                  //图片数量
+        var index = 0                   //当前播放的图片
+        var prevIndex = imgSum - 1      //前一张播放的图片
+
+        var carouselImgList = document.querySelectorAll(".div-carousel-item")
+        var carouselSpan = document.querySelectorAll('.div-carousel-focus span')
+        var autoCarousel
+
+        // 函数：显示图片
+        function showImg(showIndex, hideIndex) {
+            // 修改当前显示图片对应的图标
+            for (let index = 0; index < carouselSpan.length; index++) {
+                carouselSpan[index].classList.remove("active")
+            }
+            carouselSpan[showIndex].classList.add("active")    
+            
+            carouselImgList[showIndex].style.opacity = '1'
+            carouselImgList[hideIndex].style.opacity = '0'
+        }
+
+        // 函数：开始轮播
+        function startCarousel() {
+            autoCarousel = setInterval(function(){
+                prevIndex = index
+                index = (imgSum - 1 == index)? 0 : index+1
+                showImg(index, prevIndex)
+            }, 3000)
+        }
+
+        // 函数：初始化点击事件
+        function initListener() {
+            carouselSpan.forEach(function(el, key) {
+                el.addEventListener("click", function(e) {
+                    clearInterval(autoCarousel)
+                    showImg(key, index)
+                    index = key
+                    startCarousel()
+                })
+            })
+        }
+
+        // 函数：页面初始化
+        function init() {
+            initListener()
+            showImg(index, prevIndex)
+            startCarousel()
+        }
+        init()
+    </script>
+</body>
+</html>
