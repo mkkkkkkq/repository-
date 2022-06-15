@@ -1,0 +1,124 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 2232321 */
+  src: url('iconfont.woff2?t=1637930257542') format('woff2'),
+       url('iconfont.woff?t=1637930257542') format('woff'),
+       url('iconfont.ttf?t=1637930257542') format('truetype'),
+       url('iconfont.svg?t=1637930257542#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.iconadd:before {
+  content: "\e664";
+}
+
+.iconashbin:before {
+  content: "\e665";
+}
+
+.iconbottom:before {
+  content: "\e666";
+}
+
+.iconbad:before {
+  content: "\e667";
+}
+
+.iconchart-pie:before {
+  content: "\e668";
+}
+
+.icondelete:before {
+  content: "\e66a";
+}
+
+.icondirection-down:before {
+  content: "\e66b";
+}
+
+.icondirection-right:before {
+  content: "\e66c";
+}
+
+.icondirection-up:before {
+  content: "\e66d";
+}
+
+.icondirection-left:before {
+  content: "\e66e";
+}
+
+.icondownload:before {
+  content: "\e66f";
+}
+
+.icongood:before {
+  content: "\e673";
+}
+
+.iconhome:before {
+  content: "\e674";
+}
+
+.iconlock:before {
+  content: "\e676";
+}
+
+.iconmenu:before {
+  content: "\e677";
+}
+
+.iconhelp:before {
+  content: "\e678";
+}
+
+.iconsearch:before {
+  content: "\e67d";
+}
+
+.iconsign-out:before {
+  content: "\e67e";
+}
+
+.iconselect:before {
+  content: "\e67f";
+}
+
+.iconsetting:before {
+  content: "\e680";
+}
+
+.iconarrow-up-filling:before {
+  content: "\e688";
+}
+
+.iconarrow-down-filling:before {
+  content: "\e689";
+}
+
+.iconarrow-left-filling:before {
+  content: "\e68a";
+}
+
+.iconarrow-right-filling:before {
+  content: "\e68b";
+}
+
+.iconnotification-filling:before {
+  content: "\e68c";
+}
+
+.iconuser-filling:before {
+  content: "\e68d";
+}
+
+.iconsorting:before {
+  content: "\e68e";
+}
+

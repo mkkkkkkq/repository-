@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./font_2232321_pnazpvqupq/iconfont.css">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0c1c38;
+        }
+        .container {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            background-color: #409eff;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            transition: 1s;
+        }
+        .container input {
+            display: none;
+            width: 0px;
+            padding: 0;
+            font-size: 17px;
+            outline: none;
+            border: none;
+            background: transparent;
+            transition: 1s;
+        }
+        .container button {
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 50%;
+            background-color: #409eff;
+        }
+        .container button i {
+            font: 900 20px '';
+            color: #fff;
+        }
+
+        .container:hover {
+            width: 290px;
+            border: 2px solid #409eff;
+            background-color: #fff;
+        }
+        .container:hover input {
+            display: inline-block;
+            width: 220px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="text"><button><i class="iconfont iconsearch"></i></button>
+    </div>
+</body>
+</html>
