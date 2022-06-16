@@ -1,0 +1,176 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;    /*自动换行*/
+    background-color: #56c596;
+}
+
+.panda {
+    position: relative;
+    width: 260px;
+}
+
+.ear {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    transform: translateY(50%);
+}
+.ear > div {
+    width: 60px;
+    height: 60px;
+    background-color: #000;
+    border-radius: 50%;
+}
+
+.face {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 200px;
+    height: 200px;
+    border: 3px solid #000;
+    margin: 0 auto;
+    border-radius: 15px;
+    background-color: #fff;
+}
+/* 眼睛 */
+.eye {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.eye > div {
+    width: 50px;
+    height: 80px;
+    background-color: #000;
+    border-radius: 55% 45% 55% 45% / 60% 60% 40% 40%;
+    transform: rotateZ(45deg);
+}
+.eye > div.right {
+    border-radius: 45% 55% 45% 55% / 60% 60% 40% 40%;
+    transform: rotateZ(-45deg);
+}
+.eye > div::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 30%;
+    right: 10%;
+}
+.eye > div.right::before {
+    left: 10%;
+}
+.eye > div::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    border-radius: 50%;
+    position: absolute;
+    top: calc(30% + (18px - 10px) / 2);
+    right: calc(10% + (18px - 10px) / 2);
+}
+.eye > div.right::after {
+    left: calc(10% + (18px - 10px) / 2);
+}
+/* 鼻子 */
+.nose {
+    position: relative;
+    width: 40px;
+    height: 15px;
+    margin-bottom: 20px;
+    background-color: #000;
+    border-radius: 42px 42px 60px 60px / 30px 30px 60px 60px;
+}
+.nose::after, .nose::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 24px;
+    border-radius: 8px;
+    background-color: #000;
+    top: 80%;
+    left: calc(50% - 2px);
+    transform: rotateZ(-30deg);
+    transform-origin: top;
+}
+.nose::before {
+    transform: rotateZ(30deg);
+}
+
+/* 正方形全身 */
+/* 耳朵 */
+.square.panda .ear {
+    width: 95%;
+    margin: 0 auto;
+}
+.square.panda .ear > div {
+    width: 50px;
+    height: 45px;
+    transform: rotateZ(-45deg);
+}
+.square.panda .ear > div.right {
+    transform: rotateZ(45deg);
+}
+/* 眼睛 */
+.square.panda .eye {
+    margin-top: -50px;
+}
+.square.panda .eye > div {
+    transform: rotateZ(50deg);
+}
+.square.panda .eye > div.right {
+    transform: rotateZ(-50deg);
+}
+/* 鼻子 */
+.square.panda .nose {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.square.panda .nose::after, .square.panda .nose::before {
+    display: none;
+}
+.square.panda .boundary {
+    width: 200px;
+    height: 20px;
+    background-color: #000;
+}
+/* 脚脚 */
+.square.panda .foot {
+    position: absolute;
+    width: 40%;
+    bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+}
+.square.panda .foot > div {
+    width: 20px;
+    height: 30px;
+    background-color: #000;
+    border-radius: 10px 10px 8px 10px / 7px 7px 15px 15px;
+}
+.square.panda .foot > div.right {
+    border-radius: 10px 10px 10px 8px / 7px 7px 15px 15px;
+}
+
+/* 圆脸 */
+.panda.circle .face {
+    border-radius: 50%;
+}
+.panda.circle {
+    width: 220px;
+}
+.panda.circle .ear {
+    transform: translateY(50px);
+}
