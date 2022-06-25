@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .container > div {
+            width: 270px;
+            margin: 20px;
+        }
+        .container > div > img {
+            width: 270px;
+        }
+        .container > div:nth-child(2) > img {
+            filter: blur(2px);
+        }
+        .container > div:nth-child(3) > img {
+            filter: brightness(150%);
+        }
+        .container > div:nth-child(4) > img {
+            filter: contrast(50%);
+        }
+        .container > div:nth-child(5) > img {
+            filter: drop-shadow(5px -5px 2px tomato);
+        }
+        .container > div:nth-child(6) > img {
+            filter: grayscale(99%);
+        }
+        .container > div:nth-child(7) > img {
+            filter: hue-rotate(90deg);
+        }
+        .container > div:nth-child(8) > img {
+            filter: invert(100%);
+        }
+        .container > div:nth-child(9) > img {
+            filter: opacity(45%);
+        }
+        .container > div:nth-child(10) > img {
+            filter: saturate(0%);
+        }
+        .container > div:nth-child(11) > img {
+            filter: sepia(100%);
+        }
+        .container > div:nth-child(12) > img {
+            filter: url(#a);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>原图<br>
+            <img src="./1.jpeg" alt="">
+        </div>
+        <div>blur(**px): 模糊，默认为0<br>
+            <img src="./1.jpeg" alt="">
+        </div>
+        <div>brightness(?%): 亮度，默认为100%<br>
+            <img src="./1.jpeg" alt="">
+        </div>
+        <div>contrast(?%): 对比度，默认为100%<br>
+            <img src="./1.jpeg" alt="">
+        </div>
+        <div>drop-shadow(?px ?px ?px color):<br>
+             参数按顺序为 "水平方向偏移 竖直方向偏移 模糊传播长度 颜色"<br>
+             （和box-shadow的区别: box-shadow有内置阴影,并且为边框外面创建的阴影,并且可以有多层）<br>
+            <img src="./1.jpeg" alt="">
+        </div>
+        <div>grayscale(?%): 灰度图，默认为0%<br>
+            <img src="./1.jpeg" alt="">
+        </div>
+        <div>hue-rotate(?deg): 色相旋转，默认为0，范围为0-360，改变hsl中的h<br>
+            <img src="./1.jpeg" alt="">
+        </div>
+        <div>invert(0-100%): 反转[取反色], 默认为0%<br>
+            <img src="./1.jpeg" alt="">
+        </div>
+        <div>opacity(0-100%): 透明度，默认为100%<br>
+            <img src="./1.jpeg" alt="">
+        </div>
+        <div>saturate(0-100%): 饱和度，默认为100%<br>
+            <img src="./1.jpeg" alt="">
+        </div>
+        <div>sepia(0-100%): 转化为棕褐色，默认为0%<br>
+            <img src="./1.jpeg" alt="">
+        </div>
+        <div>url(): 参数为SVG元素的id或者xml文件的路径<br>
+            <img src="./1.jpeg" alt="">
+        </div>
+    </div>
+
+    <svg>
+        <filter id="a">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1"></feGaussianBlur>
+        </filter>
+    </svg>
+</body>
+</html>
