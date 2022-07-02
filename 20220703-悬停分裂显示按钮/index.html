@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 阿里巴巴矢量图标库 -->
+    <link rel="stylesheet" href="./font_ugj64hyplub/iconfont.css">
+    <title>Document</title>
+    <style>
+        :root {
+            --h: 100px;
+        }
+        body {
+            height: 100vh;
+            margin: 0;
+            background-color: #6f86d6;
+            background: linear-gradient(120deg, #48c6ef -100%, #6f86d6 100%);
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .container {
+            width: var(--h);
+            height: var(--h);
+            position: relative;
+        }
+        .split-top, .split-bottom {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            color: #fff;
+            background-color: #a1c4fd;
+            background: linear-gradient(#a1c4fd, #c2e9fb);
+            border-radius: 50%;
+            top: 0;
+            line-height: 125px;
+            text-align: center;
+            transition: all 0.5s;
+        }
+        .split-top i, .split-bottom i {
+            font: 900 50px '';
+        }
+        .split-top {
+            /* 裁剪：矩形 */
+            clip-path: inset(0 0 50% 0);
+        }
+        .split-bottom {
+            /* 裁剪：矩形 */
+            clip-path: inset(50% 0 0 0);
+        }
+
+        a {
+            display: block;
+            text-decoration: none;
+            font: 600 28px '';
+            color: #fff;
+            line-height: var(--h);
+            text-align: center;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .container:hover .split-top {
+            top: -22px;
+        }
+        .container:hover .split-bottom {
+            top: 22px;
+        }
+        .container:hover a {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="split-top"><i class="iconfont icon-shoucang"></i></div>
+        <div class="split-bottom"><i class="iconfont icon-shoucang"></i></div>
+        <a href="#">收藏</a>
+    </div>
+    <div class="container">
+        <div class="split-top"><i class="iconfont icon-shouye"></i></div>
+        <div class="split-bottom"><i class="iconfont icon-shouye"></i></div>
+        <a href="#">主页</a>
+    </div>
+    <div class="container">
+        <div class="split-top"><i class="iconfont icon-wenhao"></i></div>
+        <div class="split-bottom"><i class="iconfont icon-wenhao"></i></div>
+        <a href="#">帮助</a>
+    </div>
+</body>
+</html>
