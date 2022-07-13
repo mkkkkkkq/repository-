@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('./start.jpg');
+            background-size: cover;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+        .container h2 {
+            margin: 0 0 20px;
+        }
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            margin: 5px 0;
+        }
+        .login-tel, .login-code {
+            display: flex;
+            align-items: center;
+            height: 36px;
+            padding: 0 0 0 15px;
+            margin: 0 0 15px 0;
+            color: #212121;
+            box-sizing: border-box;
+            border: 1px solid #e7e7e7;
+            border-radius: 8px;
+        }
+        /* 输入框前面文字 */
+        .login-tel .text, .login-code .text{
+            width: 45px;
+            margin-right: 15px;
+            font-size: 14px;
+        }
+        /* 输入框 */
+        .login-tel input, .login-code input {
+            width: 130px;
+            outline: none;
+            border: none;
+            font-size: 14px;
+        }
+        /* 发送验证码按钮 */
+        .login-code-right {
+            width: 95px;
+            height: 36px;
+            margin-left: 10px;
+            line-height: 36px;
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+            border-radius: 0 8px 8px 0;
+            background-color: #00a1d6;
+            /* 文字不可选中 */
+            user-select: none;
+            /* 游标 */
+            cursor: pointer;
+        }
+        /* 登录按钮 */
+        .login-submit {
+            height: 36px;
+            margin: 10px 0;
+            color: #fff;
+            font-size: 14px;
+            /* 文本水平居中 */
+            text-align: center;
+            /* 文本垂直居中（行高==元素高） */
+            line-height: 36px;
+            background-color: #00a1d6;
+            border-radius: 10px;
+            /* 文字不可选中 */
+            user-select: none;
+            /* 游标 */
+            cursor: pointer;
+        }
+        /* 按钮移入变色 */
+        .login-code-right:hover, .login-submit:hover {
+            background-color: #33b4de;
+        }
+
+        /* 按钮不可用 */
+        .disabled {
+            display: none;
+            background-color: #909399;
+            /* 游标 */
+            cursor: auto;
+        }
+        .disabled:hover {
+            background-color: #909399;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>登录</h2>
+        <form action="" class="login-form">
+            <div class="login-tel">
+                <span class="text">手机</span>
+                <input placeholder="请输入手机号">
+            </div>
+            <div class="login-code">
+                <div class="login-code-left">
+                    <span class="text">验证码</span>
+                    <input placeholder="请输入验证码">
+                </div>
+                <div class="login-code-right">发送验证码</div>
+                <div class="login-code-right disabled">60s后重试</div>
+            </div>
+            <div class="login-submit">登录</div>
+        </form>
+    </div>
+
+    <script>
+        // 倒计时数值
+        var count = 60
+        // 定时器
+        var timer = null
+        // 发送按钮
+        var sendCode = document.getElementsByClassName('login-code-right')[0]
+        // 倒计时显示
+        var disabledSend = document.getElementsByClassName('login-code-right')[1]
+        // 点击事件
+        sendCode.addEventListener('click', function(e) {
+            // 如果定时器没有开启
+            if (!timer) {
+                // 隐藏发送按钮, 显示倒计时
+                sendCode.style.display = 'none'
+                disabledSend.style.display = 'block'
+                timer = setInterval(function() { 
+                    // 倒计时未结束
+                    if ( count > 0 && count <= 60 ) {
+                        count--
+                    }
+                    // 倒计时结束
+                    else {
+                        disabledSend.style.display = 'none'
+                        sendCode.style.display = 'block'
+                        // 清空计时器
+                        clearInterval(timer)
+                        timer = null
+                        count = 60
+                    }
+                    disabledSend.textContent = count + 's后重试'
+                }, 1000)
+            }
+        })
+    </script>
+</body>
+</html>
