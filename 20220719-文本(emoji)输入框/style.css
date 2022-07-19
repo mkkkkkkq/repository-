@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #a1c4fd;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background: #fff;
+    padding: 5px;
+}
+
+.emoji-selector {
+    width: 100%;
+    height: 160px;
+    border-bottom: 2px solid #e7eaef;
+    display: flex;
+    justify-content: center;
+    /* 换行 */
+    flex-wrap: wrap;
+    /* 垂直方向可滚动 */
+    overflow-y: scroll;
+}
+/* 单个表情 */
+.emoji-item {
+    width: 24px;
+    height: 24px;
+    margin: 1px;
+    /* 游标 */
+    cursor: pointer;
+    /* 不可选中 */
+    user-select: none;
+    /* 便于观察 */
+    /* border: 1px solid #e9e9e9; */
+}
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+}
+/* 滑块 */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgb(196, 196, 196);
+}
+
+
+/* 按钮 */
+.chat-footer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.chat-footer button {
+    width: 50px;
+    height: 24px;
+    margin-right: 10px;
+    line-height: 24px;
+    font-size: 12px;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    background: #7f7fd5;
+    background: linear-gradient(to right, #7f7fd5, #86a8e7);
+    /* 游标 */
+    cursor: pointer;
+    /* 不可选中 */
+    user-select: none;
+}
+
+/* 输入框 */
+.chat-input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100px;
+    /* 游标(文本)位置 */
+    padding: 8px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    /* 输入框大小不可改变 */
+    resize: none;
+}
