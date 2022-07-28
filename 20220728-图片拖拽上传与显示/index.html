@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+        }
+        .container {
+            width: 485px;
+            height: 480px;
+            display: flex; 
+             /*换行  */
+            flex-wrap: wrap;
+            /* flex容器在交叉轴上有多行, 该属性生效, 默认值为stretch, 
+            导致flex容器将交叉轴上的多余空间按行数平均分给每行, 所以修改为 flex-start */
+            align-content: flex-start;
+            /* 滚动 */
+            overflow-y: scroll;
+        }
+
+        /* 图片 */
+        .picture {
+            width: 140px;
+            height: 140px;
+            margin: 10px;
+            /* 图片无法选中 */
+            user-select: none;
+        }
+
+        /* 上传框 */
+        .upload-dragger {
+            width: 140px;
+            height: 140px;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border: 3px dashed aqua;
+            border-radius: 10px;
+            box-sizing: border-box;
+            /* 游标 */
+            cursor: pointer;
+        }
+        .upload-text {
+            color: aqua;
+            font-size: 13px;
+            /* 文字无法选中 */
+            user-select: none;
+        }
+        .upload-icon path {
+            fill: aqua;
+        }
+
+        /* 隐藏文件选择按钮 */
+        #upload-input {
+            display: none;
+        }
+
+        /* 鼠标移入上传框 */
+        .upload-dragger:hover {
+            border: 3px dashed orange;
+        }
+        /* 拖拽时的样式 */
+        .upload-dragger.drag {
+            border: 3px dashed orange;
+        }
+        .upload-dragger.drag .upload-text{
+            color: orange;
+        }
+        .upload-dragger.drag .upload-icon path{
+            fill: orange;
+        }
+
+        /* 拖拽时子元素禁用指针事件 (因为子元素会继承父元素的拖拽响应) */
+        .upload-dragger.drag * {
+            pointer-events: none;
+        }
+
+        /* 滚动条样式 */
+        .container::-webkit-scrollbar {
+            width: 5px;
+            background-color: transparent;
+        }
+        /* 滑块 */
+        .container::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: rgb(196, 196, 196);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- <img src="./1.gif" alt="" class="picture"><img src="./1.gif" alt="" class="picture"><img src="./1.gif" alt="" class="picture"> -->
+        <div class="upload-dragger">
+            <!-- 阿里巴巴矢量图标库复制 -->
+            <svg class="upload-icon" viewBox="0 0 1024 1024" width="65" height="65">
+                <path d="M815.104 363.008a307.2 307.2 0 0 0-606.72 0A256 256 0 0 0 256 870.4h204.8v-204.8H358.4l153.6-204.8 153.6 204.8h-102.4v204.8h204.8a256 256 0 0 0 47.104-507.392z" fill="#8a8a8a"></path>
+            </svg>
+            <span class="upload-text">点击上传</span>
+            <span class="upload-text">或将文件拖到此处</span>
+        </div>
+        <input type="file" id="upload-input" multiple accept="image/*">
+    </div>
+
+    <script>
+        var container = document.getElementsByClassName('container')[0]
+        // 被隐藏的" 文件选择按钮 "
+        var uploadInput = document.getElementById('upload-input')
+        // 上传框
+        var uploadDragger = document.getElementsByClassName('upload-dragger')[0]
+
+        // 上传框点击触发"文件选择按钮"的点击
+        uploadDragger.addEventListener('click', function(e) {
+            uploadInput.click()
+        })
+        // 选中文件时
+        uploadInput.addEventListener('change', function(e) {
+            console.log(e.target.files)
+            // 图片显示
+            uploadPicture(e.target.files)
+        })
+
+        // 在 uploadDragger 内部有拖拽行为时
+        uploadDragger.addEventListener('dragover', function(e) {
+            // dragover 事件一定要清楚默认事件, 不然会无法触发后面的drop事件
+            e.preventDefault()
+            // console.log("over")
+        })
+
+        // 拖拽进入 uploadDragger 时
+        uploadDragger.addEventListener('dragenter', function(e) {
+            uploadDragger.classList.add('drag')
+        })
+
+        // 拖拽离开 uploadDragger 时
+        uploadDragger.addEventListener('dragleave', function(e) {
+            uploadDragger.classList.remove('drag')
+        })
+
+        // 拖拽松开时
+        uploadDragger.addEventListener('drop', function(e) {
+            // 禁止默认行为 (有些浏览器会在新页面预览图片) 
+            e.preventDefault()
+            console.log(e.dataTransfer.files)
+            uploadDragger.classList.remove('drag')
+            // 图片显示
+            uploadPicture(e.dataTransfer.files)
+        })
+
+        function uploadPicture(files) {  
+            for (let index = 0; index < files.length; index++) {
+                // 检查是否为图片
+                if( !/\.(png|jpg|jpeg|gif|PNG|JPG|JPEG|GIF)$/.test(files[index].name) ) {
+                    alert('文件 ' + files[index].name + ' 上传错误, 文件格式必须为png|jpg|jpeg|gif')
+                    continue
+                }
+                /**
+                 * 上传操作(接口) 可以写在这里
+                 */
+
+                //  创建 img 元素
+                var newimg = document.createElement('img')
+                newimg.src = window.URL.createObjectURL(files[index])
+                newimg.className = 'picture'
+                // 在 container 的子元素 uploadDragger 前面插入 newimg 元素
+                container.insertBefore(newimg, uploadDragger)
+            }
+        }
+    </script>
+</body>
+</html>
