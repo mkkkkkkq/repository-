@@ -1,0 +1,44 @@
+{
+  "id": "3563388",
+  "name": "0802",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "4734076",
+      "name": "animals (12)",
+      "font_class": "animals",
+      "unicode": "e685",
+      "unicode_decimal": 59013
+    },
+    {
+      "icon_id": "4847984",
+      "name": "icon_food",
+      "font_class": "icon_food",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "13801972",
+      "name": "buoumaotubiao49",
+      "font_class": "buoumaotubiao",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "1403",
+      "name": "木马",
+      "font_class": "muma",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "7568829",
+      "name": "24gf-atSignCircle",
+      "font_class": "24gf-atSignCircle",
+      "unicode": "e958",
+      "unicode_decimal": 59736
+    }
+  ]
+}

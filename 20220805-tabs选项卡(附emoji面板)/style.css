@@ -1,0 +1,123 @@
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-image: linear-gradient(
+        to right, #B0E7FC , #C9FCED);
+}
+/* tabs面板 */
+.ex-tabs {
+    width: 360px;
+    height: 200px;
+    border: 1px solid #dcdfe6;
+    background-color: #fff;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 12%),
+        0 0 6px 0 rgb(0 0 0 / 4%);
+}
+/* 选项卡按钮列表 */
+.tab-header {
+    width: 100%;
+    display: flex;
+    background-color: #f5f7fa;
+    border-bottom: 1px solid #e4e7ed;
+}
+/* 选项卡按钮 */
+.tab-button {
+    padding: 10px 20px;
+    color: #909399;
+    font-size: 14px;
+    /* 令文字无法选择 */
+    user-select: none;
+    /* 游标 */
+    cursor: pointer;
+}
+/* 当前选中按钮的样式 */
+.tab-active {
+    position: relative;
+    color: #006FFF;
+    border-right: 1px solid #dcdfe6;
+    border-left: 1px solid #dcdfe6;
+    background-color: #fff;
+}
+/* 去除当前选择的按钮的底部边框 */
+.tab-active::before {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #fff;
+}
+/* 选项卡内容 */
+.tab-pane {
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+}
+
+
+
+/* emoji面板 */
+.emoji-tabs {
+    width: 324px;
+    border: 1px solid #dcdfe6;
+    background-color: #fff;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 12%),
+        0 0 6px 0 rgb(0 0 0 / 4%);
+}
+/* 表情选项卡 */
+.emoji-tabs .tab-pane {
+    width: 100%;
+    height: 150px;
+    padding: 5px;
+    display: flex;
+    /* 换行 */
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+/* 选项卡按钮列表 */
+.emoji-tabs .tab-header {
+    border-bottom: none;
+    border-top: 1px solid #e4e7ed;
+}
+
+/* 去除当前选中的按钮的顶部边框 */
+.emoji-tabs .tab-active::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+}
+
+/* 单个表情 */
+.emoji-item {
+    width: 24px;
+    height: 24px;
+    margin: 1px;
+    font-size: 16px;
+    /* 竖直方向居中 */
+    line-height: 24px;
+    /* 水平方向居中 */
+    text-align: center;
+    border-radius: 4px;
+    /* 游标 */
+    cursor: pointer;
+    /* 不可选中 */
+    user-select: none;
+}
+/* 单个表情悬停按钮 */
+.emoji-item:hover {
+    background-color: #eee;
+}
+
+/* 隐藏其他面板 */
+.tabs .tab-hide {
+	display: none;
+} 
