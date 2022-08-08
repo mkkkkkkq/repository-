@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 四叶草 -->
+    <div class="four">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="four">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+
+    <!-- 登录框用了以前发过的一个, 改了一些样式 -->
+    <div class="container">
+        <div class="div-description">
+            <img src="./1.jpg" alt=""><span>更多咨询可扫码观看~</span>
+        </div>
+        <div class="div-form">
+            <form action="" class="form-login">
+                <h1>login</h1>
+                <input type="text" placeholder="帐号">
+                <input type="password" name="" id="" placeholder="密码">
+                <button type="submit">Login</button>
+                <div class="control">
+                    <span>没有帐号? <a href="#">Register</a></span>
+                </div>
+            </form>
+            <form action="" class="form-register disappear">
+                <h1>Register</h1>
+                <input type="text" placeholder="帐号">
+                <input type="password" name="" id="" placeholder="密码">
+                <button type="submit">Register</button>
+                <div class="control">
+                    <span>已有帐号? <a href="#">Login</a></span>
+                </div>
+            </form>
+        </div>
+        <div class="div-description">
+            <img src="./1.jpg" alt=""><span>更多咨询可扫码观看~</span>
+        </div>
+    </div>
+
+    <script>
+        var btn = document.querySelectorAll('.control a')
+        var formContainer = document.querySelector('.div-form')
+        var form = document.querySelectorAll('.div-form form')
+
+        // 切换注册页面
+        btn[0].addEventListener('click', function(e) {
+            // 切换显示的表单
+            form[0].classList.add('disappear')
+            form[1].classList.remove('disappear')
+            formContainer.style.transform = 'rotateY(180deg)'
+        })
+
+        // 切换登录页面
+        btn[1].addEventListener('click', function(e) {
+            // 切换显示的表单
+            form[1].classList.add('disappear')
+            form[0].classList.remove('disappear')
+            formContainer.style.transform = 'none'
+        })
+    </script>
+</body>
+</html>

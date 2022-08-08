@@ -1,0 +1,223 @@
+* {
+    box-sizing: border-box;
+}
+:root {
+    /* 每个四叶草子div的长度; 宽度为长度的1/3 */
+    --l: 300px;
+}
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right, #c9fced, #b0e7fc);
+    /* 超出部分隐藏(四叶草位置可以自己修改, 放置过于靠边会导致旋转时出现滚动条) */
+    overflow: hidden;
+}
+
+.four {
+    position: absolute;
+    width: var(--l);
+    height: var(--l);
+    /* 旋转动画: 动画单次时长10s 动画名字 速度变化曲线为线性 重复次数无数次 */
+    animation: 10s rotating linear infinite;
+    /* 四叶草显示位置, 可以自己修改 */
+    bottom: -20px;
+    right: -20px;
+    /* 透明 */
+    opacity: .6;
+    /* 放置在底层 */
+    z-index: -1;
+} 
+.four:nth-child(2) {
+    left: -20px;
+    top: -20px;
+    bottom: unset;
+    right: unset;
+}
+.four div {
+    position: absolute;
+    display: inline-block;
+    /* 宽度为高度的1/3 */
+    width: calc(var(--l) / 3);
+    height: var(--l);
+    background-color: lightgreen;
+    /* 圆弧： 圆弧的半径为宽度的一半 */
+    border-radius: calc(var(--l) / 3 / 2);
+}
+.four div:nth-child(1) {
+    /* 位移为圆弧的半径 */
+    transform: translateX(calc(var(--l) / 3 / 2))
+}
+.four div:nth-child(2) {
+    /* 位移为圆弧的半径 + :nth-child(1)的宽度 */
+    transform: translateX(calc(var(--l) / 3 / 2 * 3));
+}
+.four div:nth-child(3) {
+    transform: rotateZ(90deg) translateY(calc(var(--l) / -3)) translateX(calc(var(--l) / 3 / -2));
+}
+.four div:nth-child(4) {
+    transform: rotateZ(90deg) translateY(calc(var(--l) / -3)) translateX(calc(var(--l) / 3 / 2));
+}
+/* 中间的白线 */
+.four div:nth-child(4)::before,
+.four div:nth-child(4)::after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    /* 为两个div的宽度 */
+    height: calc(var(--l) / 3 * 2);
+    transform: translateY(calc(var(--l) / 3 / 2)) translateX(-.5px);
+    border-radius: 50%;
+    background-color: #fff;
+}
+.four div:nth-child(4)::after {
+    transform: rotateZ(90deg) translateX(calc(var(--l) / 3 / 2 - .5px));
+}
+/* 旋转动画 */
+@keyframes rotating {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+/* 当窗口宽度大于950px，高度大于550px时，修改四叶草大小 */
+@media (min-width: 950px) and (min-height: 550px) {
+    :root {
+        /* 每个四叶草子div的长度; 宽度为长度的1/3 */
+        --l: 510px;
+    }
+}
+
+
+/* 登录框 */
+.container {
+    position: relative;
+    display: flex;
+    /* 视域 */
+    perspective: 1200px;
+    transform-style: preserve-3d;
+}
+.div-description {
+    width: 280px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+    /* 圆角: 左上 右上 右下 左下 */
+    border-radius: 5px 0 0 5px;
+    /* 利用translateZ(-1px) 将描述页面放置在最底层(避免遮住登录注册框) */
+    transform: translateZ(-1px);
+}
+.div-description:nth-last-child(1) {
+    border-radius: 0 5px 5px 0;
+}
+/* 图片 */
+.div-description img {
+    width: 75%;
+    margin-bottom: 15px;
+}
+.div-description span {
+    font-size: 12px;
+    color: #555;
+}
+
+.div-form {
+    width: 280px;
+    height: 350px;
+    position: absolute;
+    left: 0;
+    /* 翻页的时间 */
+    transition: transform 0.5s;
+    /* transform的原点修改为右边 */
+    transform-origin: right;
+    /* 翻页 */
+    /* transform: rotateY(180deg) */
+}
+/* 登录与注册表单 */
+.div-form form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 5px 0 0 5px;
+    border-right: 1px solid lightgreen;
+    /* 不可选中 */
+    user-select: none;
+}
+/* 注册表单 */
+.div-form .form-register {
+    border-radius: 0 5px 5px 0;
+    transform: rotateY(180deg);
+    border-left: 1px solid lightgreen;
+    border-right: none;
+}
+/* 隐藏表单 */
+.div-form form.disappear {
+    display: none;
+}
+/* 标题 */
+.div-form h1 {
+    margin-top: 50px;
+    /* 大写 */
+    text-transform: uppercase;
+    color: #000;
+    /* 字符间隔 */
+    letter-spacing: 5px;
+}
+.div-form input {
+    width: 70%;
+    padding: 5px 0 5px 5px;
+    margin-top: 18px;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid rgba(0, 0, 0, .7);
+    background-color: transparent;
+    color: #000;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+.div-form input:nth-of-type(2) {
+    margin-top: 16px;
+}
+/* 伪元素选择器: 输入框占位符 */
+.div-form input::placeholder {
+    color: #777;
+}
+.div-form button[type="submit"] {
+    width: 70%;
+    height: 32px;
+    margin-top: 35px;
+    border: none;
+    border-radius: 16px;
+    background-image: linear-gradient(to right, #b0e7fc, #c9fced);
+    color: #000;
+    font-size: 14px;
+    transition: letter-spacing 0.4s, font-size 0.4s;
+    /* 鼠标指针 */
+    cursor: pointer;
+}
+.div-form button[type="submit"]:hover {
+    font-size: 16px;
+    letter-spacing: 4px;
+}
+.div-form .control {
+    color: #000;
+    margin-top: 15px;
+    font-size: 13px;
+}
+.div-form .control a {
+    color: #000;
+    margin: 0 5px;
+    letter-spacing: 1px;
+}
+.div-form .control a:hover {
+    color: limegreen;
+}
