@@ -1,0 +1,160 @@
+* {
+    box-sizing: border-box;
+}
+:root {
+    /* focus时的颜色 */
+    --activeColor: black;
+    /* 默认时的颜色 */
+    --commonColor: mediumpurple;
+}
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aliceblue;
+}
+
+/* 表单 */
+.form {
+    position: relative;
+    width: 400px;
+    padding: 40px;
+    background-color: #fff;
+    transform: skewY(-3deg);
+    transition: transform .5s;
+    transform-style: preserve-3d;
+}
+/* 登录标题 */
+.form h2 {
+    margin: 0;
+    color: #000;
+    text-align: center;
+    font-size: 26px;
+    /* 字符间隔 */
+    letter-spacing: 12px;
+}
+
+.form .form-body {
+    width: 100%;
+    margin-top: 40px;
+}
+.form .form-footer {
+    width: 100%;
+    margin-top: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* 输入框容器 */
+.div-input-wrapper {
+    width: 100%;
+    display: flex;
+    margin-top: 30px;
+}
+/* 输入框前面的图标 */
+.div-input-wrapper span {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    /* 图标垂直居中 */
+    line-height: 45px;
+    /* 图标水平居中 */
+    text-align: center;
+    color: #fff;
+    background-color: var(--commonColor);
+    /* 圆角: 左上 右上 右下 左下 */
+    border-radius: 4px 0 0 4px;
+}
+.div-input-wrapper span i {
+    font-size: 20px;
+}
+/* 输入框 */
+.div-input-wrapper input {
+    /* 铺满flex容器的剩余位置 */
+    flex-grow: 1;
+    padding: 1px 12px;
+    outline: none;
+    border: 2px solid var(--commonColor);
+    /* 祛除输入框左边边框 */
+    border-left: none;
+    font-size: 16px;
+    border-radius: 0 4px 4px 0;
+}
+/* :focus-within  伪类选择器，它或它的后代获得焦点时 */
+.div-input-wrapper:focus-within span {
+    background-color: var(--activeColor);
+}
+.div-input-wrapper:focus-within input {
+    border: 2px solid var(--activeColor);
+    /* 祛除输入框左边边框 */
+    border-left: none;
+}
+/* 登录按钮 */
+.button-login {
+    outline: none;
+    border: none;
+    padding: 8px 20px;
+    color: #fff;
+    font-size: 14px;
+    background-color: var(--commonColor);
+    border-radius: 4px;
+    cursor: pointer;
+}
+/* 登录按钮点击时 */
+.button-login:focus {
+    background-color: var(--activeColor);
+}
+/* 忘记密码按钮 */
+.button-forget-psw {
+    font-size: 14px;
+    color: var(--commonColor);
+    outline: none;
+}
+/* 注意：伪类选择器，link、visited、hover、active 的设置顺序有规定 */
+/* 默认时 */
+.button-forget-psw:link {
+    color: var(--commonColor);
+}
+/* 访问过 */
+.button-forget-psw:visited {
+    color: var(--commonColor);
+}
+/* 鼠标移入时 */
+.button-forget-psw:hover {
+    color: var(--commonColor);
+}
+/* 鼠标按下时 */
+.button-forget-psw:active {
+    color: var(--activeColor);
+}
+
+/* 折纸 */
+.form::before, .form::after {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 100%;
+    top: 0;
+    left: -80px;
+    background-color: #eee;
+    transition: transform .5s, background-color .3s;
+    transform-origin: right center;
+    transform: skewY(-30deg) rotateY(-135deg);
+}
+.form::after {
+    left: unset;
+    right: -80px;
+    transform-origin: left center;
+}
+
+/* 鼠标移入或者某个输入框获得焦点时，折纸展开 */
+.form:focus-within, .form:hover {
+    transform: skewY(0deg)
+}
+.form:focus-within::before, .form:focus-within::after, 
+.form:hover::before, .form:hover::after {
+    background-color: #fff;
+    transform: skewY(0deg) rotateY(0deg);
+}
