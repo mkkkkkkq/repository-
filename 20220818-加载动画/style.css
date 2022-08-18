@@ -1,0 +1,187 @@
+:root {
+    /* 变色方块-方块宽度 */
+    --squareWidth: 25px;
+    --squareDuration: 2.5s;
+
+    /* 圆、方块变换 */
+    --cirSquareWidth: 90px;
+    --cirSquareDuration: 1.4s;
+
+    /* 时钟-盘的大小 */
+    --clockWidth: 80px;
+    /* 时钟-边框宽度 */
+    --clockThick: 8px;
+    --clockDuration: 1s;
+
+    /* wifi */
+    --wifiThick: 15px;
+    --wifiDuration: 1.5s;
+}
+
+body {
+    height: 100vh;
+    margin: 0px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #e7f6ff;
+    flex-wrap: wrap;
+}
+
+
+/* 变色方块 */
+.container1 {
+    /* 栅格布局 */
+    display: grid;
+    /* repeat(重复次数，重复内容)：在这里相当于 var(--squareWidth) var(--squareWidth) var(--squareWidth)  */
+    grid-template-columns: repeat(3, var(--squareWidth));
+    grid-template-rows: repeat(3, var(--squareWidth));
+    gap: 2px;
+}
+.container1 div {
+    width: var(--squareWidth);
+    height: var(--squareWidth);
+    background-color: #1d3f72;
+    /* 动画：名称 持续时间 线性速度播放 延迟时间 播放次数 */
+    animation: squareChange var(--squareDuration) linear calc(var(--squareDuration) / 8 * var(--s)) infinite;
+}
+.container1 div:nth-child(5) {
+    background-color: transparent;
+    animation: none;
+}
+@keyframes squareChange {
+    0%, 12.4% {
+        background-color: #5699d2;
+    }
+    12.5%, 100% {
+        background-color: #1d3f72;
+    }
+}
+
+
+/* 圆、方块变换 */
+.container2 {
+    width: var(--cirSquareWidth);
+    height: var(--cirSquareWidth);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container2 div {
+    box-sizing: border-box;
+    background-color: #a2e4f5;
+    animation: cirSquareChange var(--cirSquareDuration) linear infinite;
+}
+@keyframes cirSquareChange {
+    0% {
+        width: 20px;
+        height: 20px;
+        border: 10px solid #1d3f72;
+        border-radius: 50%;
+        transform: rotateZ(0deg);
+    }
+    50% {
+        width: var(--cirSquareWidth);
+        height: var(--cirSquareWidth);
+        border: 8px solid #1d3f72;
+        border-radius: 4px;
+        transform: rotateZ(360deg);
+    }
+    100% {
+        width: 20px;
+        height: 20px;
+        border: 10px solid #1d3f72;
+        border-radius: 50%;
+        transform: rotateZ(720deg);
+    }
+}
+
+/* 时钟 */
+.container3 {
+    width: calc(var(--clockWidth) + 2 * var(--clockThick));
+    height: calc(var(--clockWidth) + 2 * var(--clockThick));
+}
+.container3 .clock {
+    position: relative;
+    width: var(--clockWidth);
+    height: var(--clockWidth);
+    border-radius: 50%;
+    border: var(--clockThick) solid #1d3f72;
+    background-color: #f1f2f3;
+}
+.container3 .clock-circle {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #5699d2;
+    transform: translateX(calc(var(--clockWidth) / 2 - 6px)) translateY(calc(var(--clockWidth) / 2 - 6px));
+}
+.container3 .hand {
+    position: absolute;
+    left: calc(var(--clockWidth) / 2 - 3px);
+    top: calc(var(--clockWidth) / 2 / 5 * 1);
+    width: 6px;
+    height: calc(var(--clockWidth) / 2 / 5 * 4);
+    background-color: #5699d2;
+    border-radius: 3px;
+    transform-origin: bottom center;
+    animation: clockRunning var(--clockDuration) linear infinite;
+}
+.container3 .hand:nth-child(2) {
+    top: calc(var(--clockWidth) / 2 / 5 * 2);
+    height: calc(var(--clockWidth) / 2 / 5 * 3);
+    animation: clockRunning calc(var(--clockDuration) * 4) linear infinite;
+}
+@keyframes clockRunning {
+    form {
+        transform: rotateZ(0deg);
+    }
+    to {
+        transform: rotateZ(360deg);
+    }
+}
+
+/* wifi */
+.container4 {
+    position: relative;
+    width: calc(var(--wifiThick) * 6);
+    height:calc(var(--wifiThick) * 6);
+}
+.container4 div {
+    position: absolute;
+    border-radius: 50%;
+    border: var(--wifiThick) solid #1d3f72;
+    transform: rotateZ(-45deg);
+    box-sizing: border-box;
+}
+.container4 div:nth-child(1) {
+    bottom: 0;
+    left: 0;
+    animation: wifiRuning var(--wifiDuration) linear infinite;
+}
+.container4 div:nth-child(2) {
+    width: calc(6 * var(--wifiThick));
+    height: calc(6 * var(--wifiThick));
+    bottom: calc(-2 * var(--wifiThick));
+    left: calc(-2 * var(--wifiThick));
+    border-color: transparent #5699d2 transparent transparent;
+    animation: wifiRuning var(--wifiDuration) linear calc(var(--wifiDuration) / 6) infinite;
+}
+.container4 div:nth-child(3) {
+    width: calc(10 * var(--wifiThick));
+    height: calc(10 * var(--wifiThick));
+    bottom: calc(-4 * var(--wifiThick));
+    left: calc(-4 * var(--wifiThick));
+    border-color: transparent #a2e4f5 transparent transparent;
+    animation: wifiRuning var(--wifiDuration) linear calc(var(--wifiDuration) / 6 * 2) infinite;
+}
+
+@keyframes wifiRuning {
+    0% {
+        opacity: 0;
+    }
+    20%, 100% {
+        opacity: 1;
+    }
+}
