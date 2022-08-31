@@ -1,0 +1,240 @@
+:root {
+    /* 水滴型-每个水滴的大小 */
+    --dropWidth: 45px;
+    --dropDuration: 1s;
+
+    /* 圆球旋转-每个球的大小 */
+    --ballWidth: 18px;
+    /* 圆球旋转-每个球距离中心的距离 */
+    --ballRadius: 35px;
+    --ballsDuration: 5s;
+
+    /* 条状伸缩 */
+    --barStretchDuration: 1s;
+
+    /* 移动方块 */
+    --squareMoveWidth: 25px;
+    --squareMoveDuration: 2.1s;
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: lightcyan;
+    flex-wrap: wrap;
+}
+
+/* 水滴型 */
+.container1 {
+    display: grid;
+    grid-template-columns: var(--dropWidth) var(--dropWidth);
+    grid-template-rows: var(--dropWidth) var(--dropWidth);
+    gap: 2px;
+}
+.container1 div {
+    animation: dropBeating var(--dropDuration) linear infinite;
+}
+.container1 div:nth-child(1) {
+    background-color: #fc636b;
+    border-radius: 50% 50% 0 50%;
+    /* 变化原点 */
+    transform-origin: right bottom;
+}
+.container1 div:nth-child(2) {
+    background-color: #ffb900;
+    border-radius: 50% 50% 50% 0;
+    /* 变化原点 */
+    transform-origin: left bottom;
+    animation-delay: calc(var(--dropDuration) / 4);
+}
+.container1 div:nth-child(3) {
+    background-color: #6a67ce;
+    border-radius: 50% 0 50% 50%;
+    /* 变化原点 */
+    transform-origin: right top;
+    animation-delay: calc(var(--dropDuration) / 4 * 3);
+}
+.container1 div:nth-child(4) {
+    background-color: #1aafd0;
+    border-radius: 0 50% 50% 50%;
+    /* 变化原点 */
+    transform-origin: left top;
+    animation-delay: calc(var(--dropDuration) / 4 * 2);
+}
+@keyframes dropBeating {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.15);
+    }
+    50% {
+        transform: scale(1);
+    }
+}
+
+
+/* 圆球旋转 */
+.container2 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: ballsRotating var(--ballsDuration) linear infinite;
+}
+.container2 div {
+    position: absolute;
+    width: var(--ballWidth);
+    height: var(--ballWidth);
+    border-radius: 50%;
+    background-color: #3be8b0;
+    transform: rotateZ(calc(var(--b) * 72deg)) translateY(var(--ballRadius));
+    /* 动画名字 持续时间 速度变化曲线 延迟时间 无限次 */
+    /* 其中，当延迟时间为负数 (-n秒) 时，代表跳过前面n秒的动画 */
+    animation: ballsChange var(--ballsDuration) linear calc(var(--ballsDuration) / -5 * (var(--b) - 1)) infinite
+                , ballsMove calc(var(--ballsDuration) / 5) linear infinite;
+}
+.container2 div:nth-child(2) {
+    background-color: #1aafd0;
+}
+.container2 div:nth-child(3) {
+    background-color: #6a67ce;
+}
+.container2 div:nth-child(4) {
+    background-color: #fc636b;
+}
+.container2 div:nth-child(5) {
+    background-color: #ffb900;
+}
+@keyframes ballsRotating {
+    from {
+        transform: rotateZ(0deg);
+    }
+    to {
+        transform: rotateZ(360deg);
+    }
+}
+@keyframes ballsChange {
+    0% {
+        background-color: #3be8b0;
+    }
+    20% {
+        background-color: #1aafd0;
+    }
+    40% {
+        background-color: #6a67ce;
+    }
+    60% {
+        background-color: #fc636b;
+    }
+    80% {
+        background-color: #ffb900;
+    }
+    100% {
+        background-color: #3be8b0;
+    }
+}
+@keyframes ballsMove {
+    0% {
+        transform: rotateZ(calc(var(--b) * 72deg)) translateY(var(--ballRadius));
+    }
+    50% {
+        transform: rotateZ(calc(var(--b) * 72deg)) translateY(calc(var(--ballRadius) + 15px));
+    }
+    100% {
+        transform: rotateZ(calc(var(--b) * 72deg)) translateY(var(--ballRadius));
+    }
+}
+
+
+/* 条状伸缩 */
+.container3 {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    /* 为了让长方形固定在底部，这样当长度变化时，只会显示为顶部伸缩 */
+    align-items: flex-end;
+    width: 75px;
+    height: 100px;
+    padding: 20px;
+}
+.container3 div {
+    width: 12px;
+    height: 40px;
+}
+.container3 div:nth-child(1) {
+    background-color: #fc636b;
+    animation: barStretch var(--barStretchDuration) linear infinite;
+}
+.container3 div:nth-child(2) {
+    background-color: #ffb900;
+    animation: barStretch var(--barStretchDuration) linear calc(var(--barStretchDuration) / 4 * -1) infinite;
+}
+.container3 div:nth-child(3) {
+    background-color: #6a67ce;
+    animation: barStretch var(--barStretchDuration) linear calc(var(--barStretchDuration) / 4 * -3) infinite;
+}
+.container3 div:nth-child(4) {
+    background-color: #1aafd0;
+    animation: barStretch var(--barStretchDuration) linear calc(var(--barStretchDuration) / 4 * -2) infinite;
+}
+@keyframes barStretch {
+    0%, 90% {
+        height: 40px;
+    }
+    25% {
+        height: 60px;
+    }
+    35% {
+        height: 60px;
+    }
+    55% {
+        height: 100px;
+    }
+}
+
+
+/* 移动方块 */
+.container4 {
+    position: relative;
+    width: calc(var(--squareMoveWidth) * 2 + 5px);
+    height: calc(var(--squareMoveWidth) * 2 + 5px);
+}
+.container4 div {
+    position: absolute;
+    width: var(--squareMoveWidth);
+    height: var(--squareMoveWidth);
+    border-radius: 2px;
+}
+.container4 div:nth-child(1) {
+    background-color: #fc636b;
+    transform: none;
+    animation: squareMove var(--squareMoveDuration) linear calc(var(--squareMoveDuration) / 12 * -11) infinite;
+} 
+.container4 div:nth-child(2) {
+    background-color: #ffb900;
+    transform: translateX(calc(var(--squareMoveWidth) + 5px));
+    animation: squareMove var(--squareMoveDuration) linear calc(var(--squareMoveDuration) / 12 * -3) infinite;
+} 
+.container4 div:nth-child(3) {
+    background-color: #6a67ce;
+    transform: translateY(calc(var(--squareMoveWidth) + 5px));
+    animation: squareMove var(--squareMoveDuration) linear calc(var(--squareMoveDuration) / 12 * -7) infinite;
+} 
+@keyframes squareMove {
+    0%, 83.333%, 100% {
+        transform: none;
+    }
+    8.333%, 25% {
+        transform: translateX(calc(var(--squareMoveWidth) + 5px));
+    }
+    33.333%, 50% {
+        transform: translateX(calc(var(--squareMoveWidth) + 5px)) translateY(calc(var(--squareMoveWidth) + 5px));
+    }
+    58.333%, 75% {
+        transform: translateY(calc(var(--squareMoveWidth) + 5px));
+    }
+}
