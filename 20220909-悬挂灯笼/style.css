@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    background-color: #001029;
+}
+.lantern {
+    /* 相对浏览器窗口进行定位 */
+    position: fixed;
+    left: 75px;
+    top: 40px;
+}
+.lantern2 {
+    left: 230px;
+}
+.lantern3 {
+    left: unset;
+    right: 75px;
+}
+.lantern4 {
+    left: unset;
+    right: 230px;
+}
+
+.glim {
+    position: relative;
+    width: 120px;
+    height: 90px;
+    background: #ff0000cc;
+    border-radius: 50%;
+    box-shadow: -5px 5px 50px 4px orange;
+    animation: swing 3s infinite ease-in-out;
+    transform-origin: center -100px;
+}
+.lantern2 .glim, .lantern3 .glim {
+    animation: swing 5s infinite ease-in-out;
+
+}
+
+.line {
+    position: absolute;
+    top: -40px;
+    left: 60px;
+    width: 2px;
+    height: 40px;
+    background: #dc8f03;
+}
+.glim1 {
+    position: relative;
+    width: 100px;
+    height: 90px;
+    background: #ff00002a;
+    margin: auto;
+    border-radius: 50%;
+    border: 2px solid #dc8f03;
+}
+.glim1::before {
+    position: absolute;
+    content: "";
+    width: 45px;
+    height: 90px;
+    margin: -2px 8px 8px 26px;
+    border-radius: 50%;
+    border: 2px solid #dc8f03;
+}
+.glim::before, .glim::after {
+    position: absolute;
+    bottom: -7px;
+    left: 30px;
+    height: 13px;
+    width: 60px;
+    content: "";
+    display: block;
+    border-radius: 0 0 5px 5px;
+    background: orange;
+    background: linear-gradient(to right, #dc8f03, orange, #dc8f03, orange, #dc8f03);
+}
+.glim::before {
+    top: -7px;
+    bottom: unset;
+    border-radius: 5px 5px 0 0;
+}
+.fringe {
+    position: relative;
+    width: 4px;
+    height: 26px;
+    margin: -5px 0 0 59px;
+    animation: swing 4s infinite ease-in-out;
+    background: orange;
+    transform-origin: center -45px;
+}
+.fringe::before {
+    position: absolute;
+    content: "";
+    top: 23px;
+    left: -2px;
+    width: 8px;
+    height: 30px;
+    background: orange;
+    border-radius: 0 0 0 5px;
+}
+@keyframes swing {
+    0%, 100% {
+        transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(10deg);
+    }
+}
